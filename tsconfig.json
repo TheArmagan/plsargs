@@ -1,0 +1,24 @@
+{
+  "compileOnSave": true,
+  "include": [
+    "./src"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "module": "CommonJS",
+    "lib": [
+      "ESNext"
+    ],
+    "strict": false,
+    "alwaysStrict": false,
+    "moduleResolution": "Node",
+    "noImplicitAny": true,
+    "target": "ES2018"
+  },
+  "typeAcquisition": {"enable": true}
+}
