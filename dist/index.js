@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.plsParseSync = exports.plsParse = void 0;
+exports.plsParse = void 0;
 const camel_case_1 = require("camel-case");
 const mainRegex = /(--?(?<key>[a-zA-Z0-9-]+)(?: (?<value>(?:[^"'-\s]+)|"(?:[^"]*)"|'(?:[^']*)'))?)|(?<none>(?:[^'-\s]+)|"(?:[^"]*)"|'(?:[^"]*)')/g;
 function fixText(text) {
@@ -15,21 +15,7 @@ function fixText(text) {
     }
     return text;
 }
-async function plsParse(content) {
-    var _a;
-    let result = { _: [] };
-    for await (const matched of content.matchAll(mainRegex)) {
-        if ((_a = matched.groups) === null || _a === void 0 ? void 0 : _a.none) {
-            result._.push(fixText(matched.groups.none));
-        }
-        else {
-            result[camel_case_1.camelCase(matched.groups.key)] = fixText(matched.groups.none);
-        }
-    }
-    return result;
-}
-exports.plsParse = plsParse;
-function plsParseSync(content) {
+function plsParse(content) {
     let result = { _: [] };
     Array.from(content.matchAll(mainRegex)).forEach((matched) => {
         var _a;
@@ -42,4 +28,4 @@ function plsParseSync(content) {
     });
     return result;
 }
-exports.plsParseSync = plsParseSync;
+exports.plsParse = plsParse;

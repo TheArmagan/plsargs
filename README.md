@@ -3,9 +3,9 @@ Please parse this args! Please!
 
 
 ```js
-const { plsParseSync, plsParse } = require(".");
+const { plsParse } = require(".");
 
-let parsed = plsParseSync(`--testDoubleQuotes "double quotes" --hey withoutQuotes --noValue --nice 'perfect ""' --more-test "'h a'" no key given`);
+let parsed = plsParse(`--testDoubleQuotes "double quotes" --hey withoutQuotes --noValue --nice 'perfect ""' --more-test "'h a'" no key given`);
 
 console.log(parsed);
 /*

@@ -1,5 +1,8 @@
-const { plsParseSync } = require(".");
+const { plsParse } = require(".");
 
-let parsed = plsParseSync(`--testDoubleQuotes "double quotes" --hey withoutQuotes --noValue --nice 'perfect ""' --more-test "'h a'" no key given`);
+(async () => {
+  let t = `--testDoubleQuotes "double quotes" --hey withoutQuotes --noValue --nice 'perfect ""' --more-test "'h a'" no key given`;
+  let parsed = plsParse(t);
 
-console.log(parsed);
+  console.log({parsed});
+})();

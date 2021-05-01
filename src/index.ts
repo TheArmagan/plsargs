@@ -20,22 +20,7 @@ function fixText(text: any): any {
   return text;
 }
 
-export async function plsParse(content: string): Promise<Result> {
-
-  let result: Result = {_:[]};
-
-  for await (const matched of content.matchAll(mainRegex)) {
-    if (matched.groups?.none) {
-      result._.push(fixText(matched.groups.none));
-    } else {
-      result[camelCase(matched.groups.key)] = fixText(matched.groups.none);
-    }
-  }
-
-  return result;
-}
-
-export function plsParseSync(content: string): Result {
+export function plsParse(content: string): Result {
 
   let result: Result = { _: [] };
   
