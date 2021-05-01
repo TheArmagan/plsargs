@@ -1,22 +1,39 @@
 # PLSARGS
-Please parse this args! Please!
+😎 Another Argument Parser: But it's supports quotes!
 
+### Supported Quote Types
+- ` "" `
+- ` '' `
+- ` `` `
+- ` Or normal text without spaces.. `
 
+### Basic Usage Examples
 ```js
-const { plsParse } = require(".");
+import { plsParse } from "plsargs"; // ES6
+// OR //
+const plsParse = require("plsargs").plsParse; // ES5
 
-let parsed = plsParse(`--testDoubleQuotes "double quotes" --hey withoutQuotes --noValue --nice 'perfect ""' --more-test "'h a'" no key given`);
+let args = plsParse(`"hello world" 'nice world' withoutQuotes --argumentWithValue valueMoment --argumentWithValue2 "cool right?" --argumentWithoutValue`);
 
-console.log(parsed);
-/*
-{
-  _: [ 'no', 'key', 'given' ],
-  testDoubleQuotes: 'double quotes',
-  hey: 'withoutQuotes',
-  noValue: undefined,
-  nice: 'perfect ""',
-  moreTest: 'h a'
-}
-*/
+console.log(args.has("argumentWithoutValue"));
+// => true
+
+console.log(args.get("argumentWithoutValue"));
+// => undefined
+
+console.log(args.get("argumentWithValue"));
+// => "valueMoment"
+
+console.log(args.get("argumentWithValue2"));
+// => "cool right?"
+
+console.log(args._[0]);
+// => "hello world"
+
+console.log(args._[1]);
+// => "nice world"
+
+console.log(args._[2]);
+// => "withoutQuotes"
 ```
 

@@ -1,7 +1,7 @@
 {
   "name": "plsargs",
-  "version": "0.0.2",
-  "description": "Please parese these args! Please!",
+  "version": "0.1.0",
+  "description": "😎 Another Argument Parser: But it's supports quotes!",
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,10 +20,13 @@
     "cli",
     "command-line",
     "line",
-    "command"
+    "command",
+    "quotes",
+    "quote",
+    "raw"
   ],
   "author": "Kıraç Armağan Önal",
-  "license": "MIT",
+  "license": "GPL 3.0",
   "bugs": {
     "url": "https://github.com/TheArmagan/plsargs/issues"
   },

@@ -1,8 +1,5 @@
-const { plsParse } = require(".");
+const plsParse = require(".").plsParse; // ES5
 
-(async () => {
-  let t = `--testDoubleQuotes "double quotes" --hey withoutQuotes --noValue --nice 'perfect ""' --more-test "'h a'" no key given`;
-  let parsed = plsParse(t);
+let args = plsParse(`"hello world" 'nice world' --argumentWithValue valueMoment --argumentWithValue2 "cool right?" --argumentWithoutValue`);
 
-  console.log({parsed});
-})();
+console.log(args)

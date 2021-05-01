@@ -1,6 +1,2 @@
-declare type Result = {
-    _: Array<String>;
-    [key: string]: any;
-};
-export declare function plsParse(content: string): Result;
-export {};
+import { Result } from "./Result";
+export declare function plsParse(content: string | string[]): Result;

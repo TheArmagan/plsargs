@@ -1,37 +1,28 @@
 import { camelCase } from "camel-case";
+import { Result, TRawResult } from "./Result";
+const mainRegex = /--?(?<key>([a-zA-Z0-9_-]+)) +?(?:"(?<keyed0>.*?)"|'(?<keyed1>.*?)'|`(?<keyed2>.*?)`|(?<keyed3>[^"'` ]+))|(?:"(?<keyless0>.*?)"|'(?<keyless1>.*?)'|`(?<keyless2>.*?)`|(?<keyless3>[^"'` ]+))/g;
+const valuelessKeyTest = /^--?([a-zA-Z0-9_-]+)/;
+const valuelessKeyReplace = /^--?/;
 
-type Result = {
-  _: Array<String>;
-  [key: string]: any;
-}
+export function plsParse(content: string|string[]): Result {
 
-const mainRegex = /(--?(?<key>[a-zA-Z0-9-]+)(?: (?<value>(?:[^"'-\s]+)|"(?:[^"]*)"|'(?:[^']*)'))?)|(?<none>(?:[^'-\s]+)|"(?:[^"]*)"|'(?:[^"]*)')/g;
+  content = Array.isArray(content) ? content.join(" ") : content;
+  let raw: TRawResult = { _: [] };
+  let matches = Array.from(content.matchAll(mainRegex));
 
-function fixText(text: any): any {
-  if (!text) return text;
-  text = text.trim();
+  matches.forEach((match) => {
+    let { key, keyed0, keyed1, keyed2, keyed3, keyless0, keyless1, keyless2, keyless3 } = match.groups;
+    let keyed = keyed0 || keyed1 || keyed2 || keyed3;
+    let keyless = keyless0 || keyless1 || keyless2 || keyless3;
+    if (valuelessKeyTest.test(keyless)) {
+      raw[camelCase(keyless.replace(valuelessKeyReplace, ""))] = undefined;
+    } else if (typeof key != "undefined") {
+      raw[camelCase(key)] = keyed;
+    } else {
+      raw._.push(keyless);
+    }
+  });
 
-  if ((text.startsWith(`"'`) && text.endsWith(`'"`)) || (text.startsWith(`'"`) && text.endsWith(`"'`))) {
-    text = text.slice(2, -2);
-  } else if ((text.startsWith(`"`) && text.endsWith(`"`)) || text.startsWith(`'`) && text.endsWith(`'`)) {
-    text = text.slice(1, -1);
-  }
-
-  return text;
-}
-
-export function plsParse(content: string): Result {
-
-  let result: Result = { _: [] };
-  
-  Array.from(content.matchAll(mainRegex)).forEach((matched) => {
-      if (matched.groups?.none) {
-        result._.push(fixText(matched.groups.none));
-      } else {
-        result[camelCase(matched.groups.key)] = fixText(matched.groups.value);
-      }
-  })
-
-  return result;
+  return new Result(raw);
 }
 
