@@ -14,7 +14,11 @@ export function plsParse(content: string|string[]): Result {
     let { key, keyed0, keyed1, keyed2, keyed3, keyless0, keyless1, keyless2, keyless3 } = match.groups;
     let keyed = keyed0 || keyed1 || keyed2 || keyed3;
     let keyless = keyless0 || keyless1 || keyless2 || keyless3;
-    if (valuelessKeyTest.test(keyless)) {
+
+    if (valuelessKeyTest.test(keyed3)) {
+      raw[camelCase(keyed3.replace(valuelessKeyReplace, ""))] = undefined;
+      raw[camelCase(key.replace(valuelessKeyReplace, ""))] = undefined;
+    } else if (valuelessKeyTest.test(keyless)) {
       raw[camelCase(keyless.replace(valuelessKeyReplace, ""))] = undefined;
     } else if (typeof key != "undefined") {
       raw[camelCase(key)] = keyed;
