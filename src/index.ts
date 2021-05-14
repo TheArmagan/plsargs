@@ -4,7 +4,9 @@ const mainRegex = /--?(?<key>([a-zA-Z0-9_-]+)) +?(?:"(?<keyed0>.*?)"|'(?<keyed1>
 const valuelessKeyTest = /^--?([a-zA-Z0-9_-]+)/;
 const valuelessKeyReplace = /^--?/;
 
-export function plsParse(content: string|string[]): Result {
+
+export const ResultType = Result;
+export function plsParseArgs(content: string|string[]): Result {
 
   content = Array.isArray(content) ? content.join(" ") : content;
   let raw: TRawResult = { _: [] };

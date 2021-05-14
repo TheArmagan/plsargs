@@ -1,6 +1,6 @@
 {
   "name": "plsargs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "😎 Another Argument Parser: But it's supports quotes!",
   "main": "./dist/index.js",
   "scripts": {
