@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.plsParse = void 0;
+exports.plsParseArgs = exports.ResultType = void 0;
 const camel_case_1 = require("camel-case");
 const Result_1 = require("./Result");
 const mainRegex = /--?(?<key>([a-zA-Z0-9_-]+)) +?(?:"(?<keyed0>.*?)"|'(?<keyed1>.*?)'|`(?<keyed2>.*?)`|(?<keyed3>[^"'` ]+))|(?:"(?<keyless0>.*?)"|'(?<keyless1>.*?)'|`(?<keyless2>.*?)`|(?<keyless3>[^"'` ]+))/g;
 const valuelessKeyTest = /^--?([a-zA-Z0-9_-]+)/;
 const valuelessKeyReplace = /^--?/;
-function plsParse(content) {
+exports.ResultType = Result_1.Result;
+function plsParseArgs(content) {
     content = Array.isArray(content) ? content.join(" ") : content;
     let raw = { _: [] };
     let matches = Array.from(content.matchAll(mainRegex));
@@ -30,4 +31,4 @@ function plsParse(content) {
     });
     return new Result_1.Result(raw);
 }
-exports.plsParse = plsParse;
+exports.plsParseArgs = plsParseArgs;

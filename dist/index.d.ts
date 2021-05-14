@@ -1,2 +1,3 @@
 import { Result } from "./Result";
-export declare function plsParse(content: string | string[]): Result;
+export declare const ResultType: typeof Result;
+export declare function plsParseArgs(content: string | string[]): Result;
