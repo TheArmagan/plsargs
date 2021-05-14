@@ -9,9 +9,9 @@
 
 ### Basic Usage Examples
 ```js
-import { plsParse } from "plsargs"; // ES6
+import { plsParseArgs } from "plsargs"; // ES6
 // OR //
-const plsParse = require("plsargs").plsParse; // ES5
+const plsParse = require("plsargs").plsParseArgs; // ES5
 
 let args = plsParse(`"hello world" 'nice world' withoutQuotes --argumentWithValue valueMoment --argumentWithValue2 "cool right?" --argumentWithoutValue`);
 
