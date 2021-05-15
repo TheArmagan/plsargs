@@ -10,7 +10,12 @@ class Result {
         return this.raw.hasOwnProperty(key);
     }
     get(key) {
-        return this.raw[key];
+        if (typeof key == "number") {
+            return this.raw._[key];
+        }
+        else {
+            return this.raw[key];
+        }
     }
     get _() {
         return this.raw._;

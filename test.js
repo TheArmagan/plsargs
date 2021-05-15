@@ -1,5 +1,16 @@
-const plsParse = require(".").plsParse; // ES5
+const { plsParseArgs } = require("plsargs");
 
-let args = plsParse(`bruh1 -keyQuotes "-val" -keyNoValue1 -keyNoValue2 bruh2 bruh3`);
+function parseOptions(arr) {
+  let args = plsParseArgs(arr);
+  let flags = [...Object.keys(args.raw)].slice(1);
 
-console.log(args)
+  return {
+    flags: flags,
+    args: args._,
+    contentNoFlags: args._.join(" "),
+    getArgs(val) { return args.get(val) },
+    hasArg(val) { return args.has(val) }
+  };
+}
+
+console.log(require("util").inspect(parseOptions(["jahrein", "--ifadeler", "--popo", "hello"]), false, 4, true))

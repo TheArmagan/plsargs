@@ -38,4 +38,4 @@ console.log(args._[2]);
 ```
 
 ### Last update:
- - No value keys are fixed!
+ - `args.get(string|number)` args get now supports getting from keyless data.

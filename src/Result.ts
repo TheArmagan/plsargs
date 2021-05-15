@@ -14,8 +14,12 @@ export class Result {
     return this.raw.hasOwnProperty(key);
   }
 
-  get(key: string): string|undefined {
-    return this.raw[key];
+  get(key: string | number): string | undefined {
+    if (typeof key == "number") {
+      return this.raw._[key];
+    } else {
+      return this.raw[key];
+    }
   }
 
   get _(): string[] {
