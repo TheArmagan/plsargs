@@ -1,16 +1,8 @@
-const { plsParseArgs } = require("plsargs");
+const { plsParseArgs } = require(".");
 
-function parseOptions(arr) {
-  let args = plsParseArgs(arr);
-  let flags = [...Object.keys(args.raw)].slice(1);
-
-  return {
-    flags: flags,
-    args: args._,
-    contentNoFlags: args._.join(" "),
-    getArgs(val) { return args.get(val) },
-    hasArg(val) { return args.has(val) }
-  };
-}
-
-console.log(require("util").inspect(parseOptions(["jahrein", "--ifadeler", "--popo", "hello"]), false, 4, true))
+let data = plsParseArgs(`bir iki üç dört`);
+console.log(data, data.has(1), data.has(5));
+let data2 = data.clone();
+console.log({ data, data2 });
+data._.shift();
+console.log(data._, data2._);

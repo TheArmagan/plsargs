@@ -18,7 +18,7 @@
     "alwaysStrict": false,
     "moduleResolution": "Node",
     "noImplicitAny": true,
-    "target": "ES2018"
+    "target": "ES5"
   },
   "typeAcquisition": {"enable": true}
 }

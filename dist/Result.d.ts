@@ -5,7 +5,8 @@ export declare type TRawResult = {
 export declare class Result {
     raw: TRawResult;
     constructor(raw: TRawResult);
-    has(key: string): boolean;
+    has(key: string | number): boolean;
     get(key: string | number): string | undefined;
     get _(): string[];
+    clone(): Result;
 }

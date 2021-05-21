@@ -10,8 +10,12 @@ export class Result {
     this.raw = raw;
   }
 
-  has(key: string): boolean {
-    return this.raw.hasOwnProperty(key);
+  has(key: string | number): boolean {
+    if (typeof key == "number") {
+      return this.raw._.hasOwnProperty(key);
+    } else {
+      return this.raw.hasOwnProperty(key);
+    }
   }
 
   get(key: string | number): string | undefined {
@@ -26,4 +30,7 @@ export class Result {
     return this.raw._;
   }
 
+  clone() {
+    return new Result({ ...this.raw, _: [ ...this.raw._ ]});
+  }
 }

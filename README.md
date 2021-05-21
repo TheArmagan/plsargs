@@ -37,5 +37,8 @@ console.log(args._[2]);
 // => "withoutQuotes"
 ```
 
-### Last update:
+### Last updates:
+ - Now supports down to `ES5`!
+ - `args.clone()` now you can clone Results!
+ - `args.has(string|number)` args has now supports checking keyless data.
  - `args.get(string|number)` args get now supports getting from keyless data.
